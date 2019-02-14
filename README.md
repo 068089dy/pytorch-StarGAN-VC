@@ -1,12 +1,12 @@
 ## [StarGAN-VC](https://github.com/hujinsen/pytorch-StarGAN-VC)
 
-This is a pytorch implementation of the paper: [StarGAN-VC: Non-parallel many-to-many voice conversion with star generative adversarial networks](https://arxiv.org/abs/1806.02169).
+本项目使用pytorch实现了这篇paper: [StarGAN-VC: Non-parallel many-to-many voice conversion with star generative adversarial networks](https://arxiv.org/abs/1806.02169).
 
 **The converted voice examples are in *samples* directory**
 
 
 
-## [Dependencies](https://github.com/hujinsen/pytorch-StarGAN-VC)
+## [依赖](https://github.com/hujinsen/pytorch-StarGAN-VC)
 - Python 3.6 
 - pytorch 1.0
 - librosa 
@@ -15,22 +15,21 @@ This is a pytorch implementation of the paper: [StarGAN-VC: Non-parallel many-to
 - scikit-learn
 
 
-## [Usage](https://github.com/hujinsen/pytorch-StarGAN-VC)
+## [使用方法](https://github.com/hujinsen/pytorch-StarGAN-VC)
 
-### Download dataset
+### 下载数据集
 
-Download the vcc 2016 dataset to the current directory 
+下载 vcc 2016 数据集到当前目录
 
 ```
 python download.py 
 ```
+下载的zip文件会解压到 `./data/vcc2016_training` 和 `./data/evaluation_all`.
 
-The downloaded zip files are extracted to `./data/vcc2016_training` and `./data/evaluation_all`.
+1. **训练数据集:** 论文作者收集了四个 **四个演讲者** 的录音 (`./data/vcc2016_training`). 所以我们要移动相应的文件夹(eg. SF1,SF2,TM1,TM2 ) 到 `./data/speakers`.
+2. **测试数据集** 论文作者收集了 **four speakers** 的录音 (`./data/evaluation_all`). 所以我们要移动相应的文件夹(eg. SF1,SF2,TM1,TM2 ) 到 `./data/speakers_test`.
 
-1. **training set:** In the paper, the author choose **four speakers** from `./data/vcc2016_training`. So we  move the corresponding folder(eg. SF1,SF2,TM1,TM2 ) to `./data/speakers`.
-2. **testing set** In the paper, the author choose **four speakers** from `./data/evaluation_all`. So we  move the corresponding folder(eg. SF1,SF2,TM1,TM2 ) to `./data/speakers_test`.
-
-The data directory now looks like this:
+data文件夹现在应该是这样:
 
 ```
 data
@@ -50,18 +49,18 @@ data
 │   ├── ...
 ```
 
-### Preprocess
+### 预处理
 
-Extract features (mcep, f0, ap) from each speech clip.  The features are stored as npy files. We also calculate the statistical characteristics for each speaker.
+从每个演讲片段中提取特征 (mcep, f0, ap)。这些功能存储为npy文件，还要计算每个发言者的统计特征。
 
 ```
 python preprocess.py
 ```
 
-This process may take minutes !
+这个过程会耗费几分钟 !
 
 
-### Train
+### 训练
 
 ```
 python main.py
@@ -69,8 +68,7 @@ python main.py
 
 
 
-### Convert
-
+### 转换
 
 
 ```
@@ -78,15 +76,15 @@ python main.py --mode test --test_iters 200000 --src_speaker TM1 --trg_speaker "
 ```
 
 
-## [Network structure](https://github.com/hujinsen/pytorch-StarGAN-VC)
+## [网络结构](https://github.com/hujinsen/pytorch-StarGAN-VC)
 
 ![Snip20181102_2](https://github.com/hujinsen/StarGAN-Voice-Conversion/raw/master/imgs/Snip20181102_2.png)
 
 
 
- Note: Our implementation follows the original paper’s network structure, while [pytorch StarGAN-VC code](https://github.com/liusongxiang/StarGAN-Voice-Conversion) use StarGAN's network.Both can generate good audio quality. 
+注意: 我们实现的论文中原生的网络结构, 当 [pytorch StarGAN-VC code](https://github.com/liusongxiang/StarGAN-Voice-Conversion) 使用StarGAN的网络，可以产生不错的语音质量。
 
-## [Reference](https://github.com/hujinsen/pytorch-StarGAN-VC)
+## [参考](https://github.com/hujinsen/pytorch-StarGAN-VC)
 [tensorflow StarGAN-VC code](https://github.com/hujinsen/StarGAN-Voice-Conversion)
 
 [StarGAN code](https://github.com/taki0112/StarGAN-Tensorflow)
